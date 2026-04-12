@@ -56,6 +56,10 @@
       border-radius: 22px;
     }
 
+    .code-image {
+      border-radius: 0;
+    }
+
     code {
       padding: 0.1em 0.42em;
       border-radius: 0.45em;
@@ -68,7 +72,7 @@
       margin: 0;
       overflow-x: auto;
       padding: 18px 20px;
-      border-radius: 22px;
+      border-radius: 0;
       background: #10161d;
       color: #dce7f3;
       border: 1px solid rgba(255, 255, 255, 0.06);
@@ -283,6 +287,19 @@
       margin-top: 6px;
     }
 
+    .result-highlight {
+      padding: 16px 18px;
+      border-radius: 20px;
+      background: rgba(31, 79, 120, 0.08);
+      border: 1px solid rgba(31, 79, 120, 0.16);
+      border-left: 6px solid var(--accent);
+      font-weight: 800;
+      font-size: 1.02rem;
+      line-height: 1.75;
+      color: var(--ink);
+      box-shadow: 0 10px 24px rgba(31, 79, 120, 0.06);
+    }
+
     .text-flow > * + * {
       margin-top: 14px;
     }
@@ -479,6 +496,10 @@
       margin-top: 18px;
     }
 
+    .single-step-grid {
+      grid-template-columns: 1fr;
+    }
+
     .step-card {
       padding: 18px;
       border-radius: 24px;
@@ -489,6 +510,134 @@
 
     .step-card > * + * {
       margin-top: 12px;
+    }
+
+    .subproject-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+      margin-top: 24px;
+    }
+
+    .subproject-card {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      min-height: 100%;
+      padding: 24px 20px 22px;
+      border-radius: 28px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.82), rgba(255, 255, 255, 0.66));
+      border: 1px solid rgba(23, 32, 42, 0.08);
+      box-shadow: 0 12px 28px rgba(23, 32, 42, 0.06);
+    }
+
+    .subproject-topline {
+      display: block;
+      width: 72px;
+      height: 6px;
+      border-radius: 999px;
+      background: #0f141a;
+    }
+
+    .subproject-card-title {
+      font-family: "Iropke Batang", "Nanum Myeongjo", Georgia, serif;
+      font-size: clamp(1.9rem, 2.6vw, 2.8rem);
+      line-height: 1.02;
+      letter-spacing: -0.045em;
+    }
+
+    .subproject-meta {
+      display: grid;
+      gap: 8px;
+      font-size: 0.98rem;
+      font-weight: 700;
+      line-height: 1.6;
+    }
+
+    .subproject-meta p {
+      margin: 0;
+    }
+
+    .subproject-meta strong {
+      font-weight: 800;
+    }
+
+    .subproject-link {
+      display: inline-flex;
+      align-items: center;
+      color: var(--accent);
+      font-weight: 800;
+      text-decoration: underline;
+      text-underline-offset: 0.14em;
+    }
+
+    .subproject-link:hover {
+      color: #143a58;
+    }
+
+    .subproject-box {
+      flex: 1 1 auto;
+      padding: 16px 16px 18px;
+      border: 3px solid rgba(23, 32, 42, 0.34);
+      border-radius: 0;
+      background: rgba(255, 255, 255, 0.7);
+    }
+
+    .subproject-box > * + * {
+      margin-top: 16px;
+    }
+
+    .subproject-box p,
+    .subproject-box ul {
+      margin: 0;
+    }
+
+    .subproject-box ul {
+      padding-left: 22px;
+    }
+
+    .subproject-box li + li {
+      margin-top: 6px;
+    }
+
+    .subproject-media {
+      margin-top: auto;
+    }
+
+    .subproject-shot {
+      margin: 0;
+      padding: 10px;
+      overflow: hidden;
+      border: 1px solid rgba(23, 32, 42, 0.08);
+      border-radius: 22px;
+      background: rgba(255, 255, 255, 0.82);
+      box-shadow: 0 12px 24px rgba(23, 32, 42, 0.08);
+    }
+
+    .subproject-video-link {
+      margin: 0;
+      border-radius: 22px;
+      box-shadow: 0 12px 24px rgba(23, 32, 42, 0.08);
+    }
+
+    .subproject-video-link .video-link-content {
+      inset: auto 14px 14px 14px;
+      padding: 14px 16px;
+      gap: 12px;
+    }
+
+    .subproject-video-link .video-link-copy strong {
+      font-size: 0.98rem;
+    }
+
+    .subproject-video-link .video-link-copy span {
+      font-size: 0.84rem;
+    }
+
+    .subproject-video-link .video-link-pill {
+      min-width: 112px;
+      padding: 10px 14px;
+      font-size: 0.88rem;
     }
 
     .code-card-title {
@@ -539,6 +688,10 @@
       }
 
       .step-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .subproject-grid {
         grid-template-columns: 1fr;
       }
 
@@ -634,10 +787,10 @@
               <p>카메라 시야에 닿는 것만 제출하면 유의미한 효과가 있을 거라 생각했습니다.</p>
               <p>구현 코드</p>
               <figure>
-                <img src="./portfolio-update-assets/vw-frustum-before-after.png" alt="Pasted image 20260412214046">
+                <img class="code-image" src="./portfolio-update-assets/vw-frustum-before-after.png" alt="Pasted image 20260412214046">
               </figure>
-              <p>DrawCall이 40~90% 감소했고, 정점 수는 10~90%까지 감소했습니다.</p>
-              <p>35~50 FPS에서 40~120FPS로 증가했습니다.</p>
+              <p class="result-highlight">DrawCall이 40~90% 감소했고, 정점 수는 10~90%까지 감소했습니다.</p>
+              <p class="result-highlight">35~50 FPS에서 40~120FPS로 증가했습니다.</p>
               <p>한계: 카메라가 아래를 바라볼 때는 블록으로 꽉찬 청크가 많아지는데, 근본적으로 정점 수를 줄여야 했습니다.</p>
             </div>
 
@@ -645,14 +798,38 @@
               <h5 class="subtopic-title">인접한 면을 제거</h5>
               <p>블록 하나당 정점을 36개씩 제출하고 있습니다.</p>
               <p>꽉찬 청크의 경우 4096개의 블록을 갖고 있으며, 4096 * 36 = 147,456개의 정점을 갖게 됩니다.</p>
-              <p>그러나 아래의 사진처럼 보이지 않는 인접한 면들을 제거하게 될 경우, 3(정점 수) * 32(가로 삼각형 개수) * 16(높이) * 6(면 개수) = 9,216개로 줄어듭니다. (1/16)</p>
-              <figure>
-                <img src="./portfolio-update-assets/vw-hidden-face.png" alt="Pasted image 20260223163116">
-              </figure>
-              <p>최고 정점 개수가 1200만 이내로 줄어들게 되었으며, 시야 거리 80에서 FPS를 120으로 유지하게 되었습니다. (시야 거리 80 기준)</p>
-              <figure>
-                <img src="./portfolio-update-assets/vw-vertex-reduction.png" alt="Pasted image 20260412204516">
-              </figure>
+            <p>그러나 아래의 사진처럼 보이지 않는 인접한 면들을 제거하게 될 경우, 3(정점 수) * 32(가로 삼각형 개수) * 16(높이) * 6(면 개수) = 9,216개로 줄어듭니다. (1/16)</p>
+            <figure>
+              <img src="./portfolio-update-assets/vw-hidden-face.png" alt="Pasted image 20260223163116">
+            </figure>
+            <p>구현 의사 코드</p>
+            <pre><code>// MeshBuilder.cpp
+MeshData data;
+
+// 블록 순회
+for (uint32_t z = 0; z < CHUNK_SIZE; ++z)
+{
+    for (uint32_t x = 0; x < CHUNK_SIZE; ++x)
+    {
+        for (uint32_t y = 0; y < CHUNK_SIZE; ++y)
+        {
+            if (IsAir(x, y, z))
+            {
+                continue;
+            }
+
+            앞 뒤 좌 우 위 아래 블록 체크
+
+            이웃이 없는 면의 정점, 인덱스를 data에 추가
+        }
+    }
+}
+
+return data;</code></pre>
+            <p class="result-highlight">최고 정점 개수가 1200만 이내로 줄어들게 되었으며, 시야 거리 80에서 FPS를 120으로 유지하게 되었습니다. (시야 거리 80 기준)</p>
+            <figure>
+              <img src="./portfolio-update-assets/vw-vertex-reduction.png" alt="Pasted image 20260412204516">
+            </figure>
             </div>
 
             <div class="subtopic-block text-flow">
@@ -663,8 +840,20 @@
                 <img src="./portfolio-update-assets/vw-buffer-pool.png" alt="Pasted image 20260412003240">
               </figure>
               <p>인접면 제거 전, 꽉찬 청크가 147,456개의 정점을 가진다면, 격자 청크는 1/2 정도의 정점을 가지게 될 것입니다. 거의 존재하지 않는 최악을 가정해서 모든 버퍼를 크게 잡는다면, 매우 큰 리소스 낭비가 됩니다.</p>
-              <p>이를 보완하기 위해, 사이즈 마다 버퍼 풀을 제작했습니다. 사이즈를 7단계로 나눴고, 메시를 업데이트 할 때 해당 청크에 알맞는 사이즈 버퍼를 배정받도록 구현했습니다.</p>
-              <p>적절하게 메모리를 사용하면서, 최악의 상황도 보장할 수 있게 되었습니다.</p>
+              <p>이를 보완하기 위해, 사이즈 마다 버퍼 풀을 제작했습니다. 사이즈를 7단계로 나눴습니다.</p>
+              <figure>
+                <img class="code-image" src="./portfolio-update-assets/vw-buffer-pool-classes.png" alt="Pasted image 20260412224838">
+              </figure>
+              <p>메시를 업데이트 할 때 해당 청크에 알맞는 사이즈 버퍼를 배정받도록 구현했습니다.</p>
+              <div class="step-card">
+                <figure>
+                  <img class="code-image" src="./portfolio-update-assets/vw-buffer-pool-fit.png" alt="Pasted image 20260412225354">
+                </figure>
+                <figure>
+                  <img class="code-image" src="./portfolio-update-assets/vw-buffer-pool-grow.png" alt="Pasted image 20260412225409">
+                </figure>
+              </div>
+              <p>버퍼가 부족한 경우, 새로 생성하게 됩니다. 적절하게 메모리를 사용하면서, 최악의 상황도 보장할 수 있게 되었습니다.</p>
             </div>
           </div>
 
@@ -678,8 +867,12 @@
             </figure>
             <p>새 시야가 들어오는 순간 많은 메시를 생성하는 것이 프레임 드랍의 원인이었습니다.</p>
             <p>속도를 빠르게 하는 방법도 있겠지만, 작업을 프레임마다 분배하는 것이 프레임 안정화에 큰 도움이 될 것이라 판단했습니다.</p>
-            <p><span class="inline-note">구현, 시퀀스 다이어그램 및 의사 코드 (실제 코드 : 깃허브링크)</span></p>
-            <p>데모 영상과 같이 프레임 드랍이 발생하지 않게 되었습니다.</p>
+            <div class="spacer"></div>
+            <p>구현부의 시퀀스 다이어그램입니다.</p>
+            <figure>
+              <img src="./portfolio-update-assets/vw-frame-drop-sequence.png" alt="Pasted image 20260412232542">
+            </figure>
+            <p>요청된 메시 생성 작업을 큐에 저장하고 프레임마다 정해진 개수만 처리하도록 변경해, 카메라 회전 시 발생하던 프레임 드랍을 제거했습니다.</p>
           </div>
         </section>
 
@@ -712,7 +905,7 @@
             <p>OOP의 다형성처럼 구현하고 싶었고, 상속 메모리 구조와 vtable이 있는 것을 참고했습니다.</p>
             <div class="note-block">
               <p>도형이 추가될 때마다 여러 곳에서 조건문을 수정해야 했습니다.</p>
-              <p>이전 의사 코드</p>
+              <p>변경전 의사코드</p>
               <pre><code>// Intersect
 for (shape : shapes) {
   switch (shape.type) {
@@ -733,30 +926,30 @@ for (shape : selected) {
             </div>
 
             <div class="subtopic-block text-flow">
-              <h5 class="subtopic-title">이후 코드</h5>
+              <h5 class="subtopic-title">변경후 코드</h5>
               <div class="step-grid">
                 <div class="step-card">
                   <p>부모 구조체를 일반화합니다.</p>
                   <figure>
-                    <img src="./portfolio-update-assets/rt-vtable-parent.png" alt="Pasted image 20260412215409">
+                    <img class="code-image" src="./portfolio-update-assets/rt-vtable-parent.png" alt="Pasted image 20260412215409">
                   </figure>
                 </div>
                 <div class="step-card">
                   <p>추가된 도형의 vtable을 구현합니다.</p>
                   <figure>
-                    <img src="./portfolio-update-assets/rt-vtable-impl.png" alt="Pasted image 20260412215453">
+                    <img class="code-image" src="./portfolio-update-assets/rt-vtable-impl.png" alt="Pasted image 20260412215453">
                   </figure>
                 </div>
                 <div class="step-card">
                   <p>자식 구조체의 첫번째 멤버를 부모 구조체로 선언하고, vtable과 함께 초기화를 시켜줍니다.</p>
                   <figure>
-                    <img src="./portfolio-update-assets/rt-vtable-init.png" alt="Pasted image 20260412215535">
+                    <img class="code-image" src="./portfolio-update-assets/rt-vtable-init.png" alt="Pasted image 20260412215535">
                   </figure>
                 </div>
                 <div class="step-card">
                   <p>실행부에서 vtable을 이용해 호출해줍니다.</p>
                   <figure>
-                    <img src="./portfolio-update-assets/rt-vtable-call.png" alt="Pasted image 20260412215700">
+                    <img class="code-image" src="./portfolio-update-assets/rt-vtable-call.png" alt="Pasted image 20260412215700">
                   </figure>
                 </div>
               </div>
@@ -774,7 +967,7 @@ for (shape : selected) {
               </figure>
               <p>아래와 같이 상위 호출 함수를 인라인화 해주었습니다.</p>
               <figure>
-                <img src="./portfolio-update-assets/rt-inline-check.png" alt="Pasted image 20260412213025">
+                <img class="code-image" src="./portfolio-update-assets/rt-inline-check.png" alt="Pasted image 20260412213025">
               </figure>
             </div>
 
@@ -788,7 +981,7 @@ for (shape : selected) {
                 </div>
                 <div class="two-up-item">
                   <figure>
-                    <img src="./portfolio-update-assets/rt-threading-code.png" alt="Pasted image 20260412213419">
+                    <img class="code-image" src="./portfolio-update-assets/rt-threading-code.png" alt="Pasted image 20260412213419">
                   </figure>
                 </div>
               </div>
@@ -835,9 +1028,9 @@ for (shape : selected) {
                 </figure>
               </div>
             </div>
-            <p>소스코드 깃허브 퍼머링크</p>
+            <p>명령어를 실행하는 흐름을 코드로 구현한 것입니다.</p>
             <figure>
-              <img src="./portfolio-update-assets/irc-entrypoint-before.png" alt="Pasted image 20260412183048">
+              <img class="code-image" src="./portfolio-update-assets/irc-entrypoint-before.png" alt="Pasted image 20260412183048">
             </figure>
           </div>
 
@@ -848,29 +1041,134 @@ for (shape : selected) {
                 <p class="compare-title">Before</p>
                 <p>변경 전 의사코드</p>
                 <figure>
-                  <img src="./portfolio-update-assets/irc-pseudocode-before.png" alt="Pasted image 20260412183557">
+                  <img class="code-image" src="./portfolio-update-assets/irc-pseudocode-before.png" alt="Pasted image 20260412183557">
                 </figure>
               </div>
               <div class="compare-card">
                 <p class="compare-title">After</p>
                 <p>map을 활용하여 명령어 추가가 쉽도록 구현했습니다.</p>
                 <figure>
-                  <img src="./portfolio-update-assets/irc-registry-class.png" alt="Pasted image 20260412183754">
+                  <img class="code-image" src="./portfolio-update-assets/irc-registry-class.png" alt="Pasted image 20260412183754">
                 </figure>
                 <figure>
-                  <img src="./portfolio-update-assets/irc-registry-usage.png" alt="Pasted image 20260412183804">
+                  <img class="code-image" src="./portfolio-update-assets/irc-registry-usage.png" alt="Pasted image 20260412183804">
                 </figure>
               </div>
             </div>
             <p>실행부는 명령어가 추가되어도 변경되지 않습니다.</p>
             <figure>
-              <img src="./portfolio-update-assets/irc-entrypoint-after.png" alt="Pasted image 20260412183907">
+              <img class="code-image" src="./portfolio-update-assets/irc-entrypoint-after.png" alt="Pasted image 20260412183907">
             </figure>
           </div>
         </section>
 
         <section class="subproject">
           <h2>SubProject</h2>
+          <div class="subproject-grid">
+            <article class="subproject-card">
+              <span class="subproject-topline" aria-hidden="true"></span>
+              <h3 class="subproject-card-title">Libasm</h3>
+              <div class="subproject-meta">
+                <p><strong>기간:</strong> 2025.06</p>
+                <p><strong>깃허브:</strong> <a class="subproject-link" href="https://github.com/SeJin0214/libasm.git" target="_blank" rel="noreferrer">.github</a></p>
+              </div>
+              <div class="subproject-box text-flow">
+                <p>x86 assembly로 제작한 라이브러리
+                </p>
+                <ul>
+                  <li>Linked list</li>
+                  <li>문자열 처리
+                  </li>
+                </ul>
+              </div>
+              <div class="subproject-media">
+                <figure class="subproject-shot">
+                  <img class="code-image" src="./portfolio-update-assets/sub-libasm.png" alt="Libasm 프로젝트 파일 목록">
+                </figure>
+              </div>
+            </article>
+
+            <article class="subproject-card">
+              <span class="subproject-topline" aria-hidden="true"></span>
+              <h3 class="subproject-card-title">C Library</h3>
+              <div class="subproject-meta">
+                <p><strong>기간:</strong> 2024.03 ~ 2025.02</p>
+                <p><strong>깃허브:</strong> <a class="subproject-link" href="https://github.com/SeJin0214/ImplementLibrary.git" target="_blank" rel="noreferrer">.github</a></p>
+              </div>
+              <div class="subproject-box text-flow">
+                <p>자체제작 C 라이브러리
+                </p>
+                <ul>
+                  <li>각종 자료구조
+                  </li>
+                  <li>문자열 처리 함수
+                  </li>
+                  <li>파일 처리 함수 등
+                  </li>
+                </ul>
+              </div>
+              <div class="subproject-media">
+                <figure class="subproject-shot">
+                  <img class="code-image" src="./portfolio-update-assets/sub-clibrary.png" alt="C Library 폴더 구조">
+                </figure>
+              </div>
+            </article>
+
+            <article class="subproject-card">
+              <span class="subproject-topline" aria-hidden="true"></span>
+              <h3 class="subproject-card-title">JOY RUN</h3>
+              <div class="subproject-meta">
+                <p><strong>기간:</strong> 2022.09 ~ 2022.11</p>
+                <p><strong>동영상:</strong> <a class="subproject-link" href="https://youtu.be/Ndwm7jG0jP0" target="_blank" rel="noreferrer">.youtube</a></p>
+              </div>
+              <div class="subproject-box text-flow">
+                <p>(주)행복한다람쥐단 인턴십
+                </p>
+                <p>Lua, Roblox Studio를 이용한 교육용 게임 개발
+                </p>
+              </div>
+              <div class="subproject-media">
+                <a class="video-link-card subproject-video-link" href="https://youtu.be/Ndwm7jG0jP0" target="_blank" rel="noreferrer">
+                  <img src="https://i.ytimg.com/vi/Ndwm7jG0jP0/hqdefault.jpg" alt="JOY RUN YouTube thumbnail">
+                  <span class="video-link-content">
+                    <span class="video-link-copy">
+                      <strong>JOY RUN 시연 영상</strong>
+                      <span>YouTube에서 열기</span>
+                    </span>
+                    <span class="video-link-pill">영상 보기</span>
+                  </span>
+                </a>
+              </div>
+            </article>
+
+            <article class="subproject-card">
+              <span class="subproject-topline" aria-hidden="true"></span>
+              <h3 class="subproject-card-title">Until you die</h3>
+              <div class="subproject-meta">
+                <p><strong>기간:</strong> 2022.06 ~ 2022.07</p>
+                <p><strong>동영상:</strong> <a class="subproject-link" href="https://youtu.be/Edg-wOporJg" target="_blank" rel="noreferrer">youtube</a></p>
+              </div>
+              <div class="subproject-box text-flow">
+                <p>Unity, VR</p>
+                <p>Until you Fall 모작
+                </p>
+                <p>FSM 기반 다양한 패턴의 보스를 제작
+                </p>
+              </div>
+              <div class="subproject-media">
+                <a class="video-link-card subproject-video-link" href="https://youtu.be/Edg-wOporJg" target="_blank" rel="noreferrer">
+                  <img src="https://i.ytimg.com/vi/Edg-wOporJg/hqdefault.jpg" alt="Until you die YouTube thumbnail">
+                  <span class="video-link-content">
+                    <span class="video-link-copy">
+                      <strong>Until you die 시연 영상</strong>
+                      <span>YouTube에서 열기</span>
+                    </span>
+                    <span class="video-link-pill">영상 보기</span>
+                  </span>
+                </a>
+              </div>
+            </article>
+          </div>
         </section>
       </article>
     </div>
