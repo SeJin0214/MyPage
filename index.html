@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>정세진 포트폴리오</title>
+  <style>
+    :root {
+      --bg: #efe9df;
+      --paper: #fbf8f3;
+      --ink: #17202a;
+      --soft: #5d6872;
+      --line: rgba(23, 32, 42, 0.12);
+      --accent: #1f4f78;
+      --accent-soft: rgba(31, 79, 120, 0.1);
+      --shadow: 0 30px 80px rgba(23, 32, 42, 0.14);
+      --radius: 28px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      font-family: "Pretendard Variable", "SUIT Variable", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+      line-height: 1.9;
+      background:
+        radial-gradient(circle at top left, rgba(31, 79, 120, 0.08), transparent 28%),
+        radial-gradient(circle at right 12% top 10%, rgba(123, 91, 54, 0.1), transparent 22%),
+        linear-gradient(180deg, #f5f0e7 0%, var(--bg) 100%);
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(23, 32, 42, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(23, 32, 42, 0.03) 1px, transparent 1px);
+      background-size: 26px 26px;
+      mask-image: radial-gradient(circle at center, black 42%, transparent 86%);
+      opacity: 0.55;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 22px;
+    }
+
+    code {
+      padding: 0.1em 0.42em;
+      border-radius: 0.45em;
+      background: rgba(23, 32, 42, 0.06);
+      font-family: "JetBrains Mono", "D2Coding", Consolas, monospace;
+      font-size: 0.92em;
+    }
+
+    pre {
+      margin: 0;
+      overflow-x: auto;
+      padding: 18px 20px;
+      border-radius: 22px;
+      background: #10161d;
+      color: #dce7f3;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      font-family: "JetBrains Mono", "D2Coding", Consolas, monospace;
+      font-size: 0.92rem;
+      line-height: 1.7;
+      white-space: pre;
+    }
+
+    pre code {
+      padding: 0;
+      background: transparent;
+      border-radius: 0;
+      font-size: inherit;
+      color: inherit;
+    }
+
+    .page {
+      width: min(920px, calc(100% - 28px));
+      margin: 28px auto 56px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .sheet {
+      background: rgba(251, 248, 243, 0.88);
+      border: 1px solid var(--line);
+      border-radius: 34px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(18px);
+      overflow: hidden;
+    }
+
+    .masthead {
+      padding: 52px 52px 34px;
+      border-bottom: 1px solid var(--line);
+      background:
+        linear-gradient(135deg, rgba(31, 79, 120, 0.08), transparent 46%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.66), rgba(255, 255, 255, 0));
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5 {
+      margin: 0;
+      line-height: 1.22;
+      letter-spacing: -0.03em;
+    }
+
+    h1,
+    h2 {
+      font-family: "Iropke Batang", "Nanum Myeongjo", Georgia, serif;
+    }
+
+    h1 {
+      margin-top: 18px;
+      font-size: clamp(2.4rem, 6vw, 4.6rem);
+    }
+
+    .subtitle {
+      margin: 12px 0 0;
+      color: var(--soft);
+      font-size: 1.05rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    h2 {
+      font-size: clamp(1.85rem, 3vw, 2.7rem);
+      padding-top: 6px;
+    }
+
+    h3 {
+      font-size: 1.18rem;
+      font-weight: 800;
+    }
+
+    h4 {
+      font-size: 1.06rem;
+      font-weight: 800;
+    }
+
+    h5 {
+      font-size: 1rem;
+      font-weight: 800;
+    }
+
+    .article {
+      padding: 28px 52px 58px;
+    }
+
+    .project::before,
+    .subproject::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.3rem;
+      bottom: 0.3rem;
+      width: 2px;
+      background: linear-gradient(180deg, rgba(31, 79, 120, 0.72), rgba(31, 79, 120, 0.1));
+      border-radius: 999px;
+    }
+
+    .project ul,
+    .project ol {
+      margin: 18px 0 0;
+      padding-left: 24px;
+    }
+
+    .project li + li {
+      margin-top: 8px;
+    }
+
+    .project,
+    .subproject {
+      position: relative;
+      padding-left: 24px;
+      margin-top: 54px;
+    }
+
+    .project-head {
+      margin-bottom: 24px;
+    }
+
+    .project-head p {
+      margin: 16px 0 0;
+      color: var(--soft);
+      font-size: 0.98rem;
+    }
+
+    .project-head a {
+      color: var(--accent);
+      font-weight: 700;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(31, 79, 120, 0.24);
+    }
+
+    .project-head a:hover {
+      border-bottom-color: rgba(31, 79, 120, 0.6);
+    }
+
+    .content-block + .content-block {
+      margin-top: 30px;
+    }
+
+    .intro-block {
+      padding: 22px 24px;
+      border-radius: 24px;
+      background: rgba(31, 79, 120, 0.06);
+      border: 1px solid rgba(31, 79, 120, 0.1);
+    }
+
+    .section-heading {
+      margin: 28px 0 18px;
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--ink);
+    }
+
+    .chapter-block {
+      margin-top: 22px;
+      padding: 26px 24px;
+      border-radius: 26px;
+      background: rgba(255, 255, 255, 0.62);
+      border: 1px solid rgba(23, 32, 42, 0.08);
+    }
+
+    .chapter-block > * + * {
+      margin-top: 14px;
+    }
+
+    .chapter-title {
+      margin-bottom: 6px;
+      color: var(--accent);
+    }
+
+    .subtopic-block {
+      margin-top: 28px;
+      padding-top: 22px;
+      border-top: 1px dashed rgba(23, 32, 42, 0.14);
+    }
+
+    .subtopic-block > * + * {
+      margin-top: 14px;
+    }
+
+    .subtopic-title {
+      color: var(--ink);
+    }
+
+    .note-block {
+      padding: 16px 18px;
+      border-radius: 20px;
+      background: rgba(31, 79, 120, 0.06);
+      border: 1px solid rgba(31, 79, 120, 0.1);
+    }
+
+    .note-block > * + * {
+      margin-top: 10px;
+    }
+
+    .compact-list {
+      margin: 0;
+      padding-left: 20px;
+      color: var(--ink);
+    }
+
+    .compact-list li + li {
+      margin-top: 6px;
+    }
+
+    .text-flow > * + * {
+      margin-top: 14px;
+    }
+
+    .text-flow p {
+      margin: 0;
+    }
+
+    .inline-note {
+      display: inline-block;
+      padding: 8px 12px;
+      border-radius: 14px;
+      background: var(--accent-soft);
+      font-weight: 700;
+    }
+
+    figure {
+      margin: 22px 0;
+      padding: 12px;
+      background: rgba(255, 255, 255, 0.74);
+      border: 1px solid rgba(23, 32, 42, 0.08);
+      border-radius: 26px;
+    }
+
+    .two-up-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 22px;
+      margin: 18px 0;
+      align-items: start;
+    }
+
+    .two-up-grid.feature-grid {
+      grid-template-columns: minmax(0, 1.45fr) minmax(260px, 0.9fr);
+      gap: 26px;
+    }
+
+    .two-up-item p {
+      margin: 0;
+    }
+
+    .two-up-item {
+      padding: 18px;
+      border-radius: 24px;
+      background: rgba(255, 255, 255, 0.72);
+      border: 1px solid rgba(23, 32, 42, 0.08);
+      box-shadow: 0 10px 24px rgba(23, 32, 42, 0.05);
+    }
+
+    .two-up-item figure {
+      margin: 14px 0 0;
+    }
+
+    .feature-grid .two-up-item:first-child figure {
+      padding: 8px;
+    }
+
+    .video-link-card {
+      display: block;
+      position: relative;
+      width: 100%;
+      margin: 18px 0 24px;
+      border-radius: 26px;
+      overflow: hidden;
+      border: 1px solid rgba(23, 32, 42, 0.08);
+      background: #0f141a;
+      box-shadow: 0 18px 40px rgba(23, 32, 42, 0.08);
+      text-decoration: none;
+    }
+
+    .video-link-card img {
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      border-radius: 0;
+      filter: saturate(0.94);
+    }
+
+    .video-link-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(7, 10, 14, 0.08), rgba(7, 10, 14, 0.58)),
+        linear-gradient(90deg, rgba(7, 10, 14, 0.56), rgba(7, 10, 14, 0.12) 52%, rgba(7, 10, 14, 0.56));
+    }
+
+    .video-link-content {
+      position: absolute;
+      inset: auto 24px 24px 24px;
+      z-index: 1;
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 18px;
+      color: #fff;
+    }
+
+    .video-link-copy strong,
+    .video-link-copy span {
+      display: block;
+    }
+
+    .video-link-copy strong {
+      font-size: 1.1rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .video-link-copy span {
+      margin-top: 6px;
+      font-size: 0.94rem;
+      color: rgba(255, 255, 255, 0.82);
+    }
+
+    .video-link-pill {
+      flex: 0 0 auto;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 132px;
+      padding: 12px 16px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.16);
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      backdrop-filter: blur(10px);
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .video-link-card:hover .video-link-pill {
+      background: rgba(255, 255, 255, 0.22);
+    }
+
+    .video-link-card:focus-visible {
+      outline: 3px solid rgba(31, 79, 120, 0.28);
+      outline-offset: 4px;
+    }
+
+    .video-link-card:hover img {
+      transform: scale(1.01);
+    }
+
+    .video-link-card img {
+      width: 100%;
+      transition: transform 180ms ease;
+    }
+
+    .code-compare {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 18px;
+      margin-top: 18px;
+    }
+
+    .code-card {
+      padding: 18px;
+      border-radius: 24px;
+      background: rgba(255, 255, 255, 0.62);
+      border: 1px solid rgba(23, 32, 42, 0.08);
+    }
+
+    .compare-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 18px;
+    }
+
+    .compare-card {
+      padding: 18px;
+      border-radius: 24px;
+      background: rgba(255, 255, 255, 0.72);
+      border: 1px solid rgba(23, 32, 42, 0.08);
+      box-shadow: 0 10px 24px rgba(23, 32, 42, 0.05);
+    }
+
+    .compare-card > * + * {
+      margin-top: 14px;
+    }
+
+    .compare-title {
+      margin: 0;
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+    }
+
+    .step-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 18px;
+    }
+
+    .step-card {
+      padding: 18px;
+      border-radius: 24px;
+      background: rgba(255, 255, 255, 0.72);
+      border: 1px solid rgba(23, 32, 42, 0.08);
+      box-shadow: 0 10px 24px rgba(23, 32, 42, 0.05);
+    }
+
+    .step-card > * + * {
+      margin-top: 12px;
+    }
+
+    .code-card-title {
+      margin: 0 0 12px;
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: var(--accent);
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+    }
+
+    .quiet {
+      color: var(--soft);
+    }
+
+    .small-gap {
+      margin-top: 8px;
+    }
+
+    .spacer {
+      height: 8px;
+    }
+
+    @media (max-width: 760px) {
+      .page {
+        width: min(100% - 16px, 100%);
+        margin-top: 10px;
+      }
+
+      .masthead {
+        padding: 28px 22px 22px;
+      }
+
+      .article {
+        padding: 22px 22px 34px;
+      }
+
+      .two-up-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .code-compare {
+        grid-template-columns: 1fr;
+      }
+
+      .compare-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .step-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .video-link-content {
+        inset: auto 16px 16px 16px;
+        align-items: start;
+        flex-direction: column;
+      }
+
+      figure {
+        border-radius: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <div class="sheet">
+      <header class="masthead">
+        <h1>정세진 포트폴리오</h1>
+        <p class="subtitle">클라이언트 프로그래머</p>
+      </header>
+
+      <article class="article">
+        <section class="project">
+          <header class="project-head">
+            <h2>VoxelWorld</h2>
+            <p><a href="https://github.com/SeJin0214/VoxelWorld" target="_blank" rel="noreferrer">GitHub 링크</a></p>
+          </header>
+
+          <div class="content-block text-flow intro-block">
+            <p><code>VoxelWorld</code>는 대규모 복셀 월드를 실시간으로 탐색 가능한 상태로 만드는 것을 목표로 한 DirectX 11 기반 개인 프로젝트입니다.</p>
+          </div>
+
+          <a class="video-link-card" href="https://youtu.be/ebKUSxTKJh8" target="_blank" rel="noreferrer">
+            <img src="https://i.ytimg.com/vi/ebKUSxTKJh8/hqdefault.jpg" alt="VoxelWorld YouTube thumbnail">
+            <span class="video-link-content">
+              <span class="video-link-copy">
+                <strong>VoxelWorld 시연 영상</strong>
+                <span>YouTube에서 열기</span>
+              </span>
+              <span class="video-link-pill">영상 보기</span>
+            </span>
+          </a>
+
+          <h3 class="section-heading">주요 문제를 해결한 과정입니다.</h3>
+
+          <div class="chapter-block text-flow">
+            <h4 class="chapter-title">1. 동적 로딩 구조를 이용해 월드를 구현</h4>
+            <p><strong>블록과 상호작용 해야</strong>하므로, 월드를 <strong>메모리 공간</strong>에 올릴 필요가 있었습니다.</p>
+            <p>16384 x 256 x 16384의 월드의 경우 2의 32승으로 4GB가 되는 용량을 차지하므로 한 번에 메모리를 상주시키는 것은 좋은 선택이 아니었습니다.</p>
+            <div class="two-up-grid feature-grid">
+              <div class="two-up-item">
+                <p>월드를 16x16x16 단위의 청크로 관리하였고, 플레이어 주변만 동적으로 업데이트 해주었습니다.</p>
+                <figure>
+                  <img src="./portfolio-update-assets/vw-chunk-streaming.png" alt="Pasted image 20260411190153">
+                </figure>
+              </div>
+              <div class="two-up-item">
+                <p>청크 경계를 오고가며 잦은 로딩 및 삭제를 방지하기 위해 삭제되는 영역을 조금 더 크도록 보장했습니다.</p>
+                <figure>
+                  <img src="./portfolio-update-assets/vw-unload-buffer.png" alt="Pasted image 20260411191824">
+                </figure>
+              </div>
+            </div>
+            <p>결과적으로 전체 월드 크기와 별개로 메모리 사용량을 일정 범위에서 제어할 수 있도록 만들었습니다.</p>
+          </div>
+
+          <div class="chapter-block text-flow">
+            <h4 class="chapter-title">2. 더 넓은 지형을 한 화면에 보여주기</h4>
+            <p>시야 거리가 늘어나야 했습니다. 거리가 2배씩 증가할수록 로딩되는 청크 영역이 8배로 늘어났고, 성능 저하로 이어졌습니다.</p>
+            <p>아래의 사진처럼 측정하여 GPU 바운드로 판별했고, <strong>GPU의 일감을 줄일 수 있는 최적화 방법이 필요하다 생각</strong>했습니다.</p>
+            <p>VisualStudio 프로파일러로 보았을 때, CPU는 자주 대기중인 것을 확인했습니다.</p>
+            <figure>
+              <img src="./portfolio-update-assets/vw-vs-profiler.png" alt="Pasted image 20260220151842">
+            </figure>
+            <p>Nsight Graphics로 측정 결과</p>
+            <p>GPU Frame Time은 60~90ms, DrawCall은 1200~1500개내로 유지하고 있었습니다.</p>
+            <figure>
+              <img src="./portfolio-update-assets/vw-nsight-graphics.png" alt="Pasted image 20260412204432">
+            </figure>
+            <figure>
+              <img src="./portfolio-update-assets/vw-nsight-graphics-2.png" alt="Pasted image 20260221151756">
+            </figure>
+            <p>D3D11 Query로 측정해보았을 때, 정점 1억개 가량을 제출하고 있었습니다. (시야 거리 80 기준)</p>
+            <figure>
+              <img src="./portfolio-update-assets/vw-d3d11-query.png" alt="스크린샷 2026-02-21 173006 1">
+            </figure>
+
+            <div class="subtopic-block text-flow">
+              <h5 class="subtopic-title">카메라 시야 밖은 GPU에 제출하지 않는 Frustum Culling 구현</h5>
+              <p>현재 로딩된 청크를 모두 제출하고 있습니다.</p>
+              <p>카메라 시야에 닿는 것만 제출하면 유의미한 효과가 있을 거라 생각했습니다.</p>
+              <p>구현 코드</p>
+              <figure>
+                <img src="./portfolio-update-assets/vw-frustum-before-after.png" alt="Pasted image 20260412214046">
+              </figure>
+              <p>DrawCall이 40~90% 감소했고, 정점 수는 10~90%까지 감소했습니다.</p>
+              <p>35~50 FPS에서 40~120FPS로 증가했습니다.</p>
+              <p>한계: 카메라가 아래를 바라볼 때는 블록으로 꽉찬 청크가 많아지는데, 근본적으로 정점 수를 줄여야 했습니다.</p>
+            </div>
+
+            <div class="subtopic-block text-flow">
+              <h5 class="subtopic-title">인접한 면을 제거</h5>
+              <p>블록 하나당 정점을 36개씩 제출하고 있습니다.</p>
+              <p>꽉찬 청크의 경우 4096개의 블록을 갖고 있으며, 4096 * 36 = 147,456개의 정점을 갖게 됩니다.</p>
+              <p>그러나 아래의 사진처럼 보이지 않는 인접한 면들을 제거하게 될 경우, 3(정점 수) * 32(가로 삼각형 개수) * 16(높이) * 6(면 개수) = 9,216개로 줄어듭니다. (1/16)</p>
+              <figure>
+                <img src="./portfolio-update-assets/vw-hidden-face.png" alt="Pasted image 20260223163116">
+              </figure>
+              <p>최고 정점 개수가 1200만 이내로 줄어들게 되었으며, 시야 거리 80에서 FPS를 120으로 유지하게 되었습니다. (시야 거리 80 기준)</p>
+              <figure>
+                <img src="./portfolio-update-assets/vw-vertex-reduction.png" alt="Pasted image 20260412204516">
+              </figure>
+            </div>
+
+            <div class="subtopic-block text-flow">
+              <h5 class="subtopic-title">사이즈 버퍼 풀 구현</h5>
+              <p>청크 메시를 Vertex, Index 버퍼에 업데이트 해야 됩니다. 청크와 마찬가지로 풀에 담아 재사용을 하는 것이 성능 저하가 없을 것입니다. 이 때, 고려할 점이 있습니다.</p>
+              <p>아래의 그림처럼 격자로 블록이 채워진 청크가 있다고 가정해보겠습니다.</p>
+              <figure>
+                <img src="./portfolio-update-assets/vw-buffer-pool.png" alt="Pasted image 20260412003240">
+              </figure>
+              <p>인접면 제거 전, 꽉찬 청크가 147,456개의 정점을 가진다면, 격자 청크는 1/2 정도의 정점을 가지게 될 것입니다. 거의 존재하지 않는 최악을 가정해서 모든 버퍼를 크게 잡는다면, 매우 큰 리소스 낭비가 됩니다.</p>
+              <p>이를 보완하기 위해, 사이즈 마다 버퍼 풀을 제작했습니다. 사이즈를 7단계로 나눴고, 메시를 업데이트 할 때 해당 청크에 알맞는 사이즈 버퍼를 배정받도록 구현했습니다.</p>
+              <p>적절하게 메모리를 사용하면서, 최악의 상황도 보장할 수 있게 되었습니다.</p>
+            </div>
+          </div>
+
+          <div class="chapter-block text-flow">
+            <h4 class="chapter-title">3. 쾌적한 플레이를 위해 프레임 드랍을 프로파일링하여 해결했습니다.</h4>
+            <p>시야 거리를 160으로 늘린 이후, 카메라를 회전 할 때 프레임 드랍이 종종 발생했었습니다.</p>
+            <p>Nsight Systems로 프로파일링한 결과</p>
+            <p>아래와 같이 CPU에서 메시를 생성하는 비용이 대부분을 차지하고 있었습니다.</p>
+            <figure>
+              <img src="./portfolio-update-assets/vw-nsight-systems.png" alt="Pasted image 20260304191547">
+            </figure>
+            <p>새 시야가 들어오는 순간 많은 메시를 생성하는 것이 프레임 드랍의 원인이었습니다.</p>
+            <p>속도를 빠르게 하는 방법도 있겠지만, 작업을 프레임마다 분배하는 것이 프레임 안정화에 큰 도움이 될 것이라 판단했습니다.</p>
+            <p><span class="inline-note">구현, 시퀀스 다이어그램 및 의사 코드 (실제 코드 : 깃허브링크)</span></p>
+            <p>데모 영상과 같이 프레임 드랍이 발생하지 않게 되었습니다.</p>
+          </div>
+        </section>
+
+        <section class="project">
+          <header class="project-head">
+            <h2>Software Raytracer</h2>
+            <p><a href="https://github.com/SeJin0214/software-raytracer" target="_blank" rel="noreferrer">GitHub 링크</a></p>
+          </header>
+
+          <div class="content-block text-flow intro-block">
+            <p>C, CPU만으로 레이트레이싱을 구현해보았습니다.</p>
+          </div>
+
+          <a class="video-link-card" href="https://youtu.be/9e6ka8gItic" target="_blank" rel="noreferrer">
+            <img src="https://i.ytimg.com/vi/9e6ka8gItic/hqdefault.jpg" alt="Software Raytracer YouTube thumbnail">
+            <span class="video-link-content">
+              <span class="video-link-copy">
+                <strong>Software Raytracer 시연 영상</strong>
+                <span>YouTube에서 열기</span>
+              </span>
+              <span class="video-link-pill">영상 보기</span>
+            </span>
+          </a>
+
+          <h3 class="section-heading">주요 문제를 해결한 과정입니다.</h3>
+
+          <div class="chapter-block text-flow">
+            <h4 class="chapter-title">1. C에서 함수 포인터를 이용해 도형을 추가하기 쉬운 구조로 제작했습니다.</h4>
+            <p>도형을 추가할 때마다 여러 곳에서 조건문을 추가해야 했습니다. 이는 불편하며, 실수하기 쉬웠습니다.</p>
+            <p>OOP의 다형성처럼 구현하고 싶었고, 상속 메모리 구조와 vtable이 있는 것을 참고했습니다.</p>
+            <div class="note-block">
+              <p>도형이 추가될 때마다 여러 곳에서 조건문을 수정해야 했습니다.</p>
+              <p>이전 의사 코드</p>
+              <pre><code>// Intersect
+for (shape : shapes) {
+  switch (shape.type) {
+    case SPHERE: hit = intersectSphere(ray, shape); break;
+    case PLANE:  hit = intersectPlane(ray, shape);  break;
+    // ...
+  }
+}
+
+// transform
+for (shape : selected) {
+  switch (shape.type) {
+    case SPHERE: moveSphere(shape, delta); break;
+    case PLANE:  movePlane(shape, delta);  break;
+    // ...
+  }
+}</code></pre>
+            </div>
+
+            <div class="subtopic-block text-flow">
+              <h5 class="subtopic-title">이후 코드</h5>
+              <div class="step-grid">
+                <div class="step-card">
+                  <p>부모 구조체를 일반화합니다.</p>
+                  <figure>
+                    <img src="./portfolio-update-assets/rt-vtable-parent.png" alt="Pasted image 20260412215409">
+                  </figure>
+                </div>
+                <div class="step-card">
+                  <p>추가된 도형의 vtable을 구현합니다.</p>
+                  <figure>
+                    <img src="./portfolio-update-assets/rt-vtable-impl.png" alt="Pasted image 20260412215453">
+                  </figure>
+                </div>
+                <div class="step-card">
+                  <p>자식 구조체의 첫번째 멤버를 부모 구조체로 선언하고, vtable과 함께 초기화를 시켜줍니다.</p>
+                  <figure>
+                    <img src="./portfolio-update-assets/rt-vtable-init.png" alt="Pasted image 20260412215535">
+                  </figure>
+                </div>
+                <div class="step-card">
+                  <p>실행부에서 vtable을 이용해 호출해줍니다.</p>
+                  <figure>
+                    <img src="./portfolio-update-assets/rt-vtable-call.png" alt="Pasted image 20260412215700">
+                  </figure>
+                </div>
+              </div>
+              <p>요약: 부모 구조체를 일반화하고 vtable 기반으로 동적 바인딩해, 도형 추가 시 실행부 수정 없이 확장 가능하도록 구조를 개선했습니다.</p>
+            </div>
+          </div>
+
+          <div class="chapter-block text-flow">
+            <h4 class="chapter-title">2. 프레임 타임이 0.42초 정도 소요되었으나 개선을 통해 0.02초로 감소했습니다.</h4>
+            <div class="subtopic-block text-flow">
+              <h5 class="subtopic-title">함수 인라인을 통해 0.42초에서 0.1초로 감소시켰습니다.</h5>
+              <p>gprof로 측정한 결과, 함수 호출 횟수가 매우 많았고 그에 따른 오버헤드라 생각했습니다.</p>
+              <figure>
+                <img src="./portfolio-update-assets/rt-profiler.png" alt="Pasted image 20260112162145">
+              </figure>
+              <p>아래와 같이 상위 호출 함수를 인라인화 해주었습니다.</p>
+              <figure>
+                <img src="./portfolio-update-assets/rt-inline-check.png" alt="Pasted image 20260412213025">
+              </figure>
+            </div>
+
+            <div class="subtopic-block text-flow">
+              <h5 class="subtopic-title">멀티쓰레딩을 통해 픽셀을 병렬적으로 처리하여 0.1초에서 0.02초까지 감소했습니다.</h5>
+              <div class="two-up-grid">
+                <div class="two-up-item">
+                  <figure>
+                    <img src="./portfolio-update-assets/rt-tiled-render.png" alt="Pasted image 20260412213404">
+                  </figure>
+                </div>
+                <div class="two-up-item">
+                  <figure>
+                    <img src="./portfolio-update-assets/rt-threading-code.png" alt="Pasted image 20260412213419">
+                  </figure>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="project">
+          <header class="project-head">
+            <h2>IRC(Internet Relay Chat) Server</h2>
+            <p><a href="https://github.com/SeJin0214/IRCServer" target="_blank" rel="noreferrer">GitHub 링크</a></p>
+          </header>
+
+          <div class="content-block text-flow intro-block">
+            <p>IRSSI라는 채팅 클라이언트 프로그램을 호환하기 위한 IRC Server입니다.</p>
+          </div>
+
+          <a class="video-link-card" href="https://youtu.be/5x0C0uEATUc" target="_blank" rel="noreferrer">
+            <img src="https://i.ytimg.com/vi/5x0C0uEATUc/hqdefault.jpg" alt="IRC Server YouTube thumbnail">
+            <span class="video-link-content">
+              <span class="video-link-copy">
+                <strong>IRC Server 시연 영상</strong>
+                <span>YouTube에서 열기</span>
+              </span>
+              <span class="video-link-pill">영상 보기</span>
+            </span>
+          </a>
+
+          <h3 class="section-heading">주요 문제를 해결한 과정입니다.</h3>
+
+          <div class="chapter-block text-flow">
+            <p>클라이언트 프로그램 실행 방식에 맞춰, 사용자가 어느 영역(로그인 단계, 로비, 채널)에 속하냐에 따라 사용가능한 명령어를 다르게 해주었습니다.</p>
+            <div class="two-up-grid">
+              <div class="two-up-item">
+                <p>먼저 서버를 아래와 같은 그림처럼 모델링을 했습니다.</p>
+                <figure>
+                  <img src="./portfolio-update-assets/irc-model.png" alt="Pasted image 20260412181101">
+                </figure>
+              </div>
+              <div class="two-up-item">
+                <p>이후 명령어를 실행하는 흐름입니다.</p>
+                <figure>
+                  <img src="./portfolio-update-assets/irc-flow.png" alt="Pasted image 20260412182210">
+                </figure>
+              </div>
+            </div>
+            <p>소스코드 깃허브 퍼머링크</p>
+            <figure>
+              <img src="./portfolio-update-assets/irc-entrypoint-before.png" alt="Pasted image 20260412183048">
+            </figure>
+          </div>
+
+          <div class="chapter-block text-flow">
+            <p>명령어 추가에 따라 여러 곳의 조건문을 수정해야 했습니다.</p>
+            <div class="compare-grid">
+              <div class="compare-card">
+                <p class="compare-title">Before</p>
+                <p>변경 전 의사코드</p>
+                <figure>
+                  <img src="./portfolio-update-assets/irc-pseudocode-before.png" alt="Pasted image 20260412183557">
+                </figure>
+              </div>
+              <div class="compare-card">
+                <p class="compare-title">After</p>
+                <p>map을 활용하여 명령어 추가가 쉽도록 구현했습니다.</p>
+                <figure>
+                  <img src="./portfolio-update-assets/irc-registry-class.png" alt="Pasted image 20260412183754">
+                </figure>
+                <figure>
+                  <img src="./portfolio-update-assets/irc-registry-usage.png" alt="Pasted image 20260412183804">
+                </figure>
+              </div>
+            </div>
+            <p>실행부는 명령어가 추가되어도 변경되지 않습니다.</p>
+            <figure>
+              <img src="./portfolio-update-assets/irc-entrypoint-after.png" alt="Pasted image 20260412183907">
+            </figure>
+          </div>
+        </section>
+
+        <section class="subproject">
+          <h2>SubProject</h2>
+        </section>
+      </article>
+    </div>
+  </main>
+</body>
+</html>
