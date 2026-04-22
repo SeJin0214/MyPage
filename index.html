@@ -6,13 +6,16 @@
   <title>정세진 포트폴리오</title>
   <style>
     :root {
-      --bg: #efe9df;
-      --paper: #fbf8f3;
+      --bg: #f3f6f9;
+      --paper: #ffffff;
       --ink: #17202a;
       --soft: #5d6872;
       --line: rgba(23, 32, 42, 0.12);
       --accent: #1f4f78;
       --accent-soft: rgba(31, 79, 120, 0.1);
+      --surface-1: #f6f8fa;
+      --surface-2: #eef3f7;
+      --surface-3: #e6edf3;
       --shadow: 0 30px 80px rgba(23, 32, 42, 0.14);
       --radius: 28px;
     }
@@ -30,23 +33,12 @@
       color: var(--ink);
       font-family: "Pretendard Variable", "SUIT Variable", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
       line-height: 1.9;
-      background:
-        radial-gradient(circle at top left, rgba(31, 79, 120, 0.08), transparent 28%),
-        radial-gradient(circle at right 12% top 10%, rgba(123, 91, 54, 0.1), transparent 22%),
-        linear-gradient(180deg, #f5f0e7 0%, var(--bg) 100%);
+      background: var(--bg);
     }
 
     body::before {
       content: "";
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      background-image:
-        linear-gradient(rgba(23, 32, 42, 0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(23, 32, 42, 0.03) 1px, transparent 1px);
-      background-size: 26px 26px;
-      mask-image: radial-gradient(circle at center, black 42%, transparent 86%);
-      opacity: 0.55;
+      display: none;
     }
 
     img {
@@ -73,7 +65,7 @@
       overflow-x: auto;
       padding: 18px 20px;
       border-radius: 0;
-      background: #10161d;
+      background: var(--ink);
       color: #dce7f3;
       border: 1px solid rgba(255, 255, 255, 0.06);
       font-family: "JetBrains Mono", "D2Coding", Consolas, monospace;
@@ -98,20 +90,17 @@
     }
 
     .sheet {
-      background: rgba(251, 248, 243, 0.88);
+      background: var(--paper);
       border: 1px solid var(--line);
       border-radius: 34px;
       box-shadow: var(--shadow);
-      backdrop-filter: blur(18px);
       overflow: hidden;
     }
 
     .masthead {
       padding: 52px 52px 34px;
       border-bottom: 1px solid var(--line);
-      background:
-        linear-gradient(135deg, rgba(31, 79, 120, 0.08), transparent 46%),
-        linear-gradient(180deg, rgba(255, 255, 255, 0.66), rgba(255, 255, 255, 0));
+      background: rgba(31, 79, 120, 0.06);
     }
 
     h1,
@@ -175,7 +164,7 @@
       top: 0.3rem;
       bottom: 0.3rem;
       width: 2px;
-      background: linear-gradient(180deg, rgba(31, 79, 120, 0.72), rgba(31, 79, 120, 0.1));
+      background: var(--accent);
       border-radius: 999px;
     }
 
@@ -228,6 +217,53 @@
       border: 1px solid rgba(31, 79, 120, 0.1);
     }
 
+    .contribution-block {
+      padding: 22px 24px 24px;
+      border-radius: 24px;
+      background: #f6f8fa;
+      border: 1px solid rgba(23, 32, 42, 0.12);
+      box-shadow: 0 14px 30px rgba(23, 32, 42, 0.06);
+    }
+
+    .contribution-block h4 {
+      color: var(--accent);
+    }
+
+    .role-summary {
+      display: grid;
+      gap: 12px;
+      margin: 18px 0 0;
+    }
+
+    .role-summary-item {
+      display: grid;
+      grid-template-columns: 112px minmax(0, 1fr);
+      gap: 16px;
+      align-items: start;
+      padding: 14px 16px;
+      border-radius: 18px;
+      background: #ffffff;
+      border: 1px solid rgba(23, 32, 42, 0.1);
+    }
+
+    .role-summary-item.mine {
+      border-left: 5px solid var(--accent);
+      background: #ffffff;
+    }
+
+    .role-summary-item dt {
+      margin: 0;
+      color: var(--accent);
+      font-size: 0.92rem;
+      font-weight: 800;
+      line-height: 1.5;
+    }
+
+    .role-summary-item dd {
+      margin: 0;
+      line-height: 1.7;
+    }
+
     .section-heading {
       margin: 28px 0 18px;
       font-size: 1.1rem;
@@ -239,8 +275,8 @@
       margin-top: 22px;
       padding: 26px 24px;
       border-radius: 26px;
-      background: rgba(255, 255, 255, 0.62);
-      border: 1px solid rgba(23, 32, 42, 0.08);
+      background: var(--surface-1);
+      border: 1px solid rgba(23, 32, 42, 0.12);
     }
 
     .chapter-block > * + * {
@@ -254,8 +290,12 @@
 
     .subtopic-block {
       margin-top: 28px;
-      padding-top: 22px;
-      border-top: 1px dashed rgba(23, 32, 42, 0.14);
+      margin-left: 10px;
+      padding: 20px 20px 22px;
+      border-radius: 22px;
+      background: var(--surface-2);
+      border: 1px solid rgba(23, 32, 42, 0.12);
+      border-left: 4px solid rgba(31, 79, 120, 0.34);
     }
 
     .subtopic-block > * + * {
@@ -269,8 +309,8 @@
     .note-block {
       padding: 16px 18px;
       border-radius: 20px;
-      background: rgba(31, 79, 120, 0.06);
-      border: 1px solid rgba(31, 79, 120, 0.1);
+      background: var(--surface-2);
+      border: 1px solid rgba(23, 32, 42, 0.12);
     }
 
     .note-block > * + * {
@@ -290,7 +330,7 @@
     .result-highlight {
       padding: 16px 18px;
       border-radius: 20px;
-      background: rgba(31, 79, 120, 0.08);
+      background: var(--surface-3);
       border: 1px solid rgba(31, 79, 120, 0.16);
       border-left: 6px solid var(--accent);
       font-weight: 800;
@@ -344,8 +384,8 @@
     .two-up-item {
       padding: 18px;
       border-radius: 24px;
-      background: rgba(255, 255, 255, 0.72);
-      border: 1px solid rgba(23, 32, 42, 0.08);
+      background: var(--surface-2);
+      border: 1px solid rgba(23, 32, 42, 0.12);
       box-shadow: 0 10px 24px rgba(23, 32, 42, 0.05);
     }
 
@@ -365,7 +405,7 @@
       border-radius: 26px;
       overflow: hidden;
       border: 1px solid rgba(23, 32, 42, 0.08);
-      background: #0f141a;
+      background: var(--ink);
       box-shadow: 0 18px 40px rgba(23, 32, 42, 0.08);
       text-decoration: none;
     }
@@ -381,9 +421,7 @@
       content: "";
       position: absolute;
       inset: 0;
-      background:
-        linear-gradient(180deg, rgba(7, 10, 14, 0.08), rgba(7, 10, 14, 0.58)),
-        linear-gradient(90deg, rgba(7, 10, 14, 0.56), rgba(7, 10, 14, 0.12) 52%, rgba(7, 10, 14, 0.56));
+      background: rgba(7, 10, 14, 0.46);
     }
 
     .video-link-content {
@@ -457,8 +495,8 @@
     .code-card {
       padding: 18px;
       border-radius: 24px;
-      background: rgba(255, 255, 255, 0.62);
-      border: 1px solid rgba(23, 32, 42, 0.08);
+      background: var(--surface-2);
+      border: 1px solid rgba(23, 32, 42, 0.12);
     }
 
     .compare-grid {
@@ -471,8 +509,8 @@
     .compare-card {
       padding: 18px;
       border-radius: 24px;
-      background: rgba(255, 255, 255, 0.72);
-      border: 1px solid rgba(23, 32, 42, 0.08);
+      background: var(--surface-2);
+      border: 1px solid rgba(23, 32, 42, 0.12);
       box-shadow: 0 10px 24px rgba(23, 32, 42, 0.05);
     }
 
@@ -503,8 +541,8 @@
     .step-card {
       padding: 18px;
       border-radius: 24px;
-      background: rgba(255, 255, 255, 0.72);
-      border: 1px solid rgba(23, 32, 42, 0.08);
+      background: var(--surface-2);
+      border: 1px solid rgba(23, 32, 42, 0.12);
       box-shadow: 0 10px 24px rgba(23, 32, 42, 0.05);
     }
 
@@ -526,7 +564,7 @@
       min-height: 100%;
       padding: 24px 20px 22px;
       border-radius: 28px;
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0.82), rgba(255, 255, 255, 0.66));
+      background: rgba(255, 255, 255, 0.82);
       border: 1px solid rgba(23, 32, 42, 0.08);
       box-shadow: 0 12px 28px rgba(23, 32, 42, 0.06);
     }
@@ -536,7 +574,7 @@
       width: 72px;
       height: 6px;
       border-radius: 999px;
-      background: #0f141a;
+      background: var(--ink);
     }
 
     .subproject-card-title {
@@ -572,7 +610,7 @@
     }
 
     .subproject-link:hover {
-      color: #143a58;
+      color: var(--accent);
     }
 
     .subproject-box {
@@ -695,6 +733,15 @@
         grid-template-columns: 1fr;
       }
 
+      .role-summary-item {
+        grid-template-columns: 1fr;
+        gap: 6px;
+      }
+
+      .subtopic-block {
+        margin-left: 0;
+      }
+
       .video-link-content {
         inset: auto 16px 16px 16px;
         align-items: start;
@@ -712,7 +759,6 @@
     <div class="sheet">
       <header class="masthead">
         <h1>정세진 포트폴리오</h1>
-        <p class="subtitle">클라이언트 프로그래머</p>
       </header>
 
       <article class="article">
@@ -742,7 +788,7 @@
           <div class="chapter-block text-flow">
             <h4 class="chapter-title">1. 동적 로딩 구조를 이용해 월드를 구현</h4>
             <p><strong>블록과 상호작용 해야</strong>하므로, 월드를 <strong>메모리 공간</strong>에 올릴 필요가 있었습니다.</p>
-            <p>16384 x 256 x 16384의 월드의 경우 2의 32승으로 4GB가 되는 용량을 차지하므로 한 번에 메모리를 상주시키는 것은 좋은 선택이 아니었습니다.</p>
+            <p>16384 x 256 x 16384의 월드의 경우 2의 36승으로 64GB가 되는 용량을 차지하므로 한 번에 메모리를 상주시키는 것은 좋은 선택이 아니었습니다.</p>
             <div class="two-up-grid feature-grid">
               <div class="two-up-item">
                 <p>월드를 16x16x16 단위의 청크로 관리하였고, 플레이어 주변만 동적으로 업데이트 해주었습니다.</p>
@@ -996,7 +1042,21 @@ for (shape : selected) {
           </header>
 
           <div class="content-block text-flow intro-block">
-            <p>IRSSI라는 채팅 클라이언트 프로그램을 호환하기 위한 IRC Server입니다.</p>
+            <p>3인 팀 프로젝트로 IRSSI 클라이언트를 호환하는 IRC Server를 구현했습니다. 팀에서는 TCP/select 기반 다중 클라이언트 처리와 로비/채널 기능을 함께 구현했습니다.</p>
+          </div>
+
+          <div class="content-block contribution-block">
+            <h4>담당 역할</h4>
+            <dl class="role-summary">
+              <div class="role-summary-item mine">
+                <dt>본인 담당</dt>
+                <dd>Server/User/Space(로그인 단계, 로비, 채널) 모델링과 command interface/registry 구조, Space별 허용 명령 분리 구조를 설계하고 PASS, NICK, USER, PART, QUIT 명령어를 구현했습니다.</dd>
+              </div>
+              <div class="role-summary-item">
+                <dt>팀원 구현</dt>
+                <dd>팀원들은 같은 command 구조 위에서 JOIN, TOPIC, MODE, KICK, INVITE, PRIVMSG 명령어를 구현했으며, 각 명령어는 모델링된 클래스의 함수를 호출하는 방식으로 동작하도록 맞췄습니다.</dd>
+              </div>
+            </dl>
           </div>
 
           <a class="video-link-card" href="https://youtu.be/5x0C0uEATUc" target="_blank" rel="noreferrer">
